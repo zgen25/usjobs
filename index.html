@@ -26,6 +26,7 @@
             background-color: var(--background);
             color: var(--text);
             line-height: 1.6;
+            overflow-x: hidden;
         }
         
         .container {
@@ -113,11 +114,17 @@
             margin: 0 auto;
         }
         
-        .jobs-feed {
+        .jobs-carousel {
+            position: relative;
+            margin: 40px 0;
+            overflow: hidden;
+        }
+        
+        .carousel-container {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 25px;
-            margin-top: 40px;
+            transition: transform 0.5s ease;
         }
         
         .job-card {
@@ -127,6 +134,7 @@
             box-shadow: 0 4px 6px rgba(0,0,0,0.03);
             transition: transform 0.2s, box-shadow 0.2s;
             border: 1px solid #e2e8f0;
+            position: relative;
         }
         
         .job-card:hover {
@@ -140,6 +148,7 @@
             align-items: center;
             gap: 15px;
             border-bottom: 1px solid #f1f5f9;
+            position: relative;
         }
         
         .company-logo {
@@ -163,6 +172,7 @@
             font-size: 18px;
             font-weight: 600;
             margin-bottom: 4px;
+            padding-right: 30px;
         }
         
         .company-name {
@@ -258,15 +268,148 @@
             font-weight: 600;
         }
         
-        .job-card {
-            position: relative;
+        .carousel-nav {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 30px;
+        }
+        
+        .carousel-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #cbd5e1;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .carousel-dot.active {
+            background-color: var(--primary);
+        }
+        
+        .live-feed-container {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 60px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.03);
+            border: 1px solid #e2e8f0;
+        }
+        
+        .live-feed-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        
+        .live-feed-title {
+            font-size: 20px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .live-indicator {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 14px;
+            color: #dc2626;
+            font-weight: 600;
+        }
+        
+        .live-indicator::before {
+            content: "";
+            display: block;
+            width: 8px;
+            height: 8px;
+            background-color: #dc2626;
+            border-radius: 50%;
+            animation: pulse 1.5s infinite;
+        }
+        
+        .view-all {
+            color: var(--primary);
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+        }
+        
+        .live-feed-content {
+            max-height: 300px;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+        
+        .feed-item {
+            display: flex;
+            gap: 15px;
+            padding: 12px 0;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        
+        .feed-item:last-child {
+            border-bottom: none;
+        }
+        
+        .feed-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #e2e8f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            overflow: hidden;
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .feed-details {
+            flex-grow: 1;
+        }
+        
+        .feed-text {
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+        
+        .feed-text strong {
+            font-weight: 600;
+        }
+        
+        .feed-time {
+            font-size: 12px;
+            color: var(--text-light);
+        }
+        
+        .feed-company {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .feed-company img {
+            width: 16px;
+            height: 16px;
+            border-radius: 2px;
+        }
+        
+        @media (max-width: 1024px) {
+            .carousel-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
         
         @media (max-width: 768px) {
-            .jobs-feed {
-                grid-template-columns: 1fr;
-            }
-            
             .page-header h1 {
                 font-size: 28px;
             }
@@ -274,6 +417,41 @@
             .page-header p {
                 font-size: 16px;
             }
+            
+            .carousel-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .job-card-header {
+                padding: 15px;
+            }
+            
+            .job-card-body {
+                padding: 15px;
+            }
+            
+            .live-feed-title {
+                font-size: 18px;
+            }
+        }
+        
+        /* Custom scrollbar for live feed */
+        .live-feed-content::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        .live-feed-content::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 10px;
+        }
+        
+        .live-feed-content::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+        
+        .live-feed-content::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
         }
     </style>
 </head>
@@ -299,124 +477,449 @@
                 <p>Exclusive job openings from America's top companies. Apply directly today.</p>
             </div>
             
-            <div class="jobs-feed">
-                <!-- Apple Jobs -->
-                <div class="job-card">
-                    <div class="job-card-header">
-                        <div class="company-logo">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple">
-                        </div>
-                        <div>
-                            <h3 class="job-title">Customer Support Specialist</h3>
-                            <p class="company-name">Apple Inc.</p>
-                        </div>
-                    </div>
-                    <div class="job-card-body">
-                        <div class="job-meta">
-                            <div class="meta-item">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <span>Remote (USA)</span>
+            <div class="jobs-carousel">
+                <div class="carousel-container" id="carousel">
+                    <!-- Apple Jobs -->
+                    <div class="job-card">
+                        <div class="job-card-header">
+                            <div class="company-logo">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple">
                             </div>
-                            <div class="meta-item">
-                                <i class="fas fa-dollar-sign"></i>
-                                <span>$28-$35/hr</span>
+                            <div>
+                                <h3 class="job-title">Customer Support Specialist</h3>
+                                <p class="company-name">Apple Inc.</p>
+                            </div>
+                            <div class="urgent-tag">HIRING NOW</div>
+                        </div>
+                        <div class="job-card-body">
+                            <div class="job-meta">
+                                <div class="meta-item">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span>Remote (USA)</span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-dollar-sign"></i>
+                                    <span>$28-$35/hr</span>
+                                </div>
+                            </div>
+                            <p class="job-description">
+                                Join Apple's customer support team working from home. Provide exceptional service to Apple customers with full training provided.
+                            </p>
+                            <a href="https://go4affm.com/c/?p=26712&o=12688" class="apply-btn">Apply Now</a>
+                        </div>
+                        <div class="job-card-footer">
+                            <span class="job-type">Full-time</span>
+                            <span class="posted-time">Posted 2h ago</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Marvel Jobs -->
+                    <div class="job-card">
+                        <div class="job-card-header">
+                            <div class="company-logo">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/MarvelLogo.svg" alt="Marvel">
+                            </div>
+                            <div>
+                                <h3 class="job-title">Content Editor</h3>
+                                <p class="company-name">Marvel Entertainment</p>
                             </div>
                         </div>
-                        <p class="job-description">
-                            Join Apple's customer support team working from home. Provide exceptional service to Apple customers with full training provided.
-                        </p>
-                        <a href="https://go4affm.com/c/?p=26712&o=12688" class="apply-btn">Apply Now</a>
+                        <div class="job-card-body">
+                            <div class="job-meta">
+                                <div class="meta-item">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span>New York, NY</span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-dollar-sign"></i>
+                                    <span>$60k-$75k/year</span>
+                                </div>
+                            </div>
+                            <p class="job-description">
+                                Work with Marvel's editorial team to develop and edit content for comics and digital media. Passion for comics required.
+                            </p>
+                            <a href="https://go4affm.com/c/?p=26712&o=10729" class="apply-btn">Apply Now</a>
+                        </div>
+                        <div class="job-card-footer">
+                            <span class="job-type">Full-time</span>
+                            <span class="posted-time">Posted 1d ago</span>
+                        </div>
                     </div>
-                    <div class="job-card-footer">
-                        <span class="job-type">Full-time</span>
-                        <span class="posted-time">Posted 2h ago</span>
+                    
+                    <!-- Netflix Jobs -->
+                    <div class="job-card">
+                        <div class="job-card-header">
+                            <div class="company-logo">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix">
+                            </div>
+                            <div>
+                                <h3 class="job-title">Content Moderator</h3>
+                                <p class="company-name">Netflix</p>
+                            </div>
+                            <div class="urgent-tag">HIRING NOW</div>
+                        </div>
+                        <div class="job-card-body">
+                            <div class="job-meta">
+                                <div class="meta-item">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span>Remote (USA)</span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-dollar-sign"></i>
+                                    <span>$22-$30/hr</span>
+                                </div>
+                            </div>
+                            <p class="job-description">
+                                Help maintain Netflix's content quality standards by reviewing and rating content. Flexible hours available.
+                            </p>
+                            <a href="https://go4affm.com/c/?p=26712&o=10730" class="apply-btn">Apply Now</a>
+                        </div>
+                        <div class="job-card-footer">
+                            <span class="job-type">Part-time</span>
+                            <span class="posted-time">Posted 5h ago</span>
+                        </div>
                     </div>
-                    <div class="urgent-tag">HIRING NOW</div>
+                    
+                    <!-- YouTube Jobs -->
+                    <div class="job-card">
+                        <div class="job-card-header">
+                            <div class="company-logo">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/7/75/YouTube_social_white_squircle_%282017%29.svg" alt="YouTube">
+                            </div>
+                            <div>
+                                <h3 class="job-title">Video Editor</h3>
+                                <p class="company-name">YouTube</p>
+                            </div>
+                            <div class="urgent-tag">HIRING NOW</div>
+                        </div>
+                        <div class="job-card-body">
+                            <div class="job-meta">
+                                <div class="meta-item">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span>Remote (USA)</span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-dollar-sign"></i>
+                                    <span>$25-$40/hr</span>
+                                </div>
+                            </div>
+                            <p class="job-description">
+                                Edit engaging video content for YouTube creators. Experience with Adobe Premiere or Final Cut Pro required.
+                            </p>
+                            <a href="https://go4affm.com/c/?p=26712&o=10727" class="apply-btn">Apply Now</a>
+                        </div>
+                        <div class="job-card-footer">
+                            <span class="job-type">Contract</span>
+                            <span class="posted-time">Posted 8h ago</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Tesla Jobs -->
+                    <div class="job-card">
+                        <div class="job-card-header">
+                            <div class="company-logo">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/b/bb/Tesla_T_symbol.svg" alt="Tesla">
+                            </div>
+                            <div>
+                                <h3 class="job-title">Production Associate</h3>
+                                <p class="company-name">Tesla</p>
+                            </div>
+                        </div>
+                        <div class="job-card-body">
+                            <div class="job-meta">
+                                <div class="meta-item">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span>Fremont, CA</span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-dollar-sign"></i>
+                                    <span>$18-$25/hr</span>
+                                </div>
+                            </div>
+                            <p class="job-description">
+                                Join Tesla's production team assembling electric vehicles. No experience required - full training provided.
+                            </p>
+                            <a href="https://go4affm.com/c/?p=26712&o=9186" class="apply-btn">Apply Now</a>
+                        </div>
+                        <div class="job-card-footer">
+                            <span class="job-type">Full-time</span>
+                            <span class="posted-time">Posted 3d ago</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Amazon Jobs -->
+                    <div class="job-card">
+                        <div class="job-card-header">
+                            <div class="company-logo">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon">
+                            </div>
+                            <div>
+                                <h3 class="job-title">Delivery Driver</h3>
+                                <p class="company-name">Amazon</p>
+                            </div>
+                            <div class="urgent-tag">HIRING NOW</div>
+                        </div>
+                        <div class="job-card-body">
+                            <div class="job-meta">
+                                <div class="meta-item">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span>Nationwide</span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-dollar-sign"></i>
+                                    <span>$18-$22/hr</span>
+                                </div>
+                            </div>
+                            <p class="job-description">
+                                Deliver packages for Amazon with flexible scheduling. Use your own vehicle or company-provided van.
+                            </p>
+                            <a href="https://go4affm.com/c/?p=26712&o=9320" class="apply-btn">Apply Now</a>
+                        </div>
+                        <div class="job-card-footer">
+                            <span class="job-type">Full-time</span>
+                            <span class="posted-time">Posted 1h ago</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Walmart Jobs -->
+                    <div class="job-card">
+                        <div class="job-card-header">
+                            <div class="company-logo">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/1/14/Walmart_Spark.svg" alt="Walmart">
+                            </div>
+                            <div>
+                                <h3 class="job-title">Store Associate</h3>
+                                <p class="company-name">Walmart</p>
+                            </div>
+                        </div>
+                        <div class="job-card-body">
+                            <div class="job-meta">
+                                <div class="meta-item">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span>Nationwide</span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-dollar-sign"></i>
+                                    <span>$15-$18/hr</span>
+                                </div>
+                            </div>
+                            <p class="job-description">
+                                Join Walmart's retail team with flexible scheduling and employee discounts. Various positions available.
+                            </p>
+                            <a href="https://go4affm.com/c/?p=26712&o=9150" class="apply-btn">Apply Now</a>
+                        </div>
+                        <div class="job-card-footer">
+                            <span class="job-type">Part-time</span>
+                            <span class="posted-time">Posted 2d ago</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Disney Jobs -->
+                    <div class="job-card">
+                        <div class="job-card-header">
+                            <div class="company-logo">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg" alt="Disney">
+                            </div>
+                            <div>
+                                <h3 class="job-title">Customer Service Rep</h3>
+                                <p class="company-name">Disney</p>
+                            </div>
+                            <div class="urgent-tag">HIRING NOW</div>
+                        </div>
+                        <div class="job-card-body">
+                            <div class="job-meta">
+                                <div class="meta-item">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span>Remote (USA)</span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-dollar-sign"></i>
+                                    <span>$20-$28/hr</span>
+                                </div>
+                            </div>
+                            <p class="job-description">
+                                Provide magical customer service for Disney+ subscribers. Flexible schedules with full training provided.
+                            </p>
+                            <a href="https://go4affm.com/c/?p=26712&o=9151" class="apply-btn">Apply Now</a>
+                        </div>
+                        <div class="job-card-footer">
+                            <span class="job-type">Full-time</span>
+                            <span class="posted-time">Posted 6h ago</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Microsoft Jobs -->
+                    <div class="job-card">
+                        <div class="job-card-header">
+                            <div class="company-logo">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/9/96/Microsoft_logo_%282012%29.svg" alt="Microsoft">
+                            </div>
+                            <div>
+                                <h3 class="job-title">Technical Support</h3>
+                                <p class="company-name">Microsoft</p>
+                            </div>
+                        </div>
+                        <div class="job-card-body">
+                            <div class="job-meta">
+                                <div class="meta-item">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span>Remote (USA)</span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-dollar-sign"></i>
+                                    <span>$25-$35/hr</span>
+                                </div>
+                            </div>
+                            <p class="job-description">
+                                Provide technical support for Microsoft products. Training provided for candidates with basic computer skills.
+                            </p>
+                            <a href="https://go4affm.com/c/?p=26712&o=8030" class="apply-btn">Apply Now</a>
+                        </div>
+                        <div class="job-card-footer">
+                            <span class="job-type">Full-time</span>
+                            <span class="posted-time">Posted 1d ago</span>
+                        </div>
+                    </div>
                 </div>
                 
-                <!-- Marvel Jobs -->
-                <div class="job-card">
-                    <div class="job-card-header">
-                        <div class="company-logo">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/MarvelLogo.svg" alt="Marvel">
-                        </div>
-                        <div>
-                            <h3 class="job-title">Content Editor</h3>
-                            <p class="company-name">Marvel Entertainment</p>
-                        </div>
-                    </div>
-                    <div class="job-card-body">
-                        <div class="job-meta">
-                            <div class="meta-item">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <span>New York, NY</span>
-                            </div>
-                            <div class="meta-item">
-                                <i class="fas fa-dollar-sign"></i>
-                                <span>$60k-$75k/year</span>
-                            </div>
-                        </div>
-                        <p class="job-description">
-                            Work with Marvel's editorial team to develop and edit content for comics and digital media. Passion for comics required.
-                        </p>
-                        <a href="https://go4affm.com/c/?p=26712&o=10729" class="apply-btn">Apply Now</a>
-                    </div>
-                    <div class="job-card-footer">
-                        <span class="job-type">Full-time</span>
-                        <span class="posted-time">Posted 1d ago</span>
-                    </div>
+                <div class="carousel-nav">
+                    <div class="carousel-dot active" data-index="0"></div>
+                    <div class="carousel-dot" data-index="1"></div>
+                    <div class="carousel-dot" data-index="2"></div>
                 </div>
-                
-                <!-- Netflix Jobs -->
-                <div class="job-card">
-                    <div class="job-card-header">
-                        <div class="company-logo">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix">
-                        </div>
-                        <div>
-                            <h3 class="job-title">Content Moderator</h3>
-                            <p class="company-name">Netflix</p>
-                        </div>
+            </div>
+            
+            <div class="live-feed-container">
+                <div class="live-feed-header">
+                    <div class="live-feed-title">
+                        <span>Live Job Matches</span>
+                        <div class="live-indicator">LIVE</div>
                     </div>
-                    <div class="job-card-body">
-                        <div class="job-meta">
-                            <div class="meta-item">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <span>Remote (USA)</span>
-                            </div>
-                            <div class="meta-item">
-                                <i class="fas fa-dollar-sign"></i>
-                                <span>$22-$30/hr</span>
-                            </div>
-                        </div>
-                        <p class="job-description">
-                            Help maintain Netflix's content quality standards by reviewing and rating content. Flexible hours available.
-                        </p>
-                        <a href="https://go4affm.com/c/?p=26712&o=10730" class="apply-btn">Apply Now</a>
-                    </div>
-                    <div class="job-card-footer">
-                        <span class="job-type">Part-time</span>
-                        <span class="posted-time">Posted 5h ago</span>
-                    </div>
-                    <div class="urgent-tag">HIRING NOW</div>
+                    <a href="#" class="view-all">View All</a>
                 </div>
-                
-                <!-- Continue with all other job listings in the same format -->
-                <!-- Each job card should include:
-                     1. Company logo
-                     2. Job title
-                     3. Company name
-                     4. Location and salary meta info
-                     5. Short description
-                     6. Your affiliate link as the Apply Now button
-                     7. Job type and posted time
-                     8. Urgent tag if applicable
-                -->
+                <div class="live-feed-content" id="live-feed">
+                    <!-- Feed items will be added by JavaScript -->
+                </div>
             </div>
         </div>
     </main>
     
     <script>
+        // Job data for the live feed
+        const jobMatches = [
+            {name: "Michael R.", location: "Ohio", company: "Amazon", position: "Delivery Driver", time: "2 minutes ago", logo: "amazon"},
+            {name: "Jennifer K.", location: "Florida", company: "Apple", position: "Remote Support", time: "5 minutes ago", logo: "apple"},
+            {name: "David S.", location: "California", company: "Tesla", position: "Production Associate", time: "8 minutes ago", logo: "tesla"},
+            {name: "Lisa M.", location: "New York", company: "Marvel", position: "Content Editor", time: "12 minutes ago", logo: "marvel"},
+            {name: "Robert T.", location: "Texas", company: "Netflix", position: "Content Moderator", time: "15 minutes ago", logo: "netflix"},
+            {name: "Sarah J.", location: "Illinois", company: "Disney", position: "Customer Service", time: "18 minutes ago", logo: "disney"},
+            {name: "James P.", location: "Georgia", company: "Microsoft", position: "Technical Support", time: "22 minutes ago", logo: "microsoft"},
+            {name: "Emily W.", location: "Washington", company: "YouTube", position: "Video Editor", time: "25 minutes ago", logo: "youtube"},
+            {name: "Daniel H.", location: "Colorado", company: "Walmart", position: "Store Associate", time: "28 minutes ago", logo: "walmart"},
+            {name: "Olivia M.", location: "Arizona", company: "Apple", position: "Customer Support", time: "32 minutes ago", logo: "apple"},
+            {name: "William B.", location: "Michigan", company: "Amazon", position: "Warehouse Worker", time: "35 minutes ago", logo: "amazon"},
+            {name: "Sophia L.", location: "Pennsylvania", company: "Netflix", position: "Content Reviewer", time: "40 minutes ago", logo: "netflix"},
+            {name: "Ethan C.", location: "Virginia", company: "Tesla", position: "Assembly Technician", time: "45 minutes ago", logo: "tesla"},
+            {name: "Ava S.", location: "North Carolina", company: "Marvel", position: "Graphic Designer", time: "50 minutes ago", logo: "marvel"},
+            {name: "Noah W.", location: "Massachusetts", company: "Disney", position: "Help Desk Agent", time: "55 minutes ago", logo: "disney"},
+            {name: "Isabella G.", location: "Indiana", company: "Microsoft", position: "Support Specialist", time: "1 hour ago", logo: "microsoft"},
+            {name: "Liam F.", location: "Tennessee", company: "YouTube", position: "Video Producer", time: "1 hour ago", logo: "youtube"},
+            {name: "Mia D.", location: "Missouri", company: "Walmart", position: "Cashier", time: "1 hour ago", logo: "walmart"},
+            {name: "Benjamin P.", location: "Maryland", company: "Apple", position: "Tech Support", time: "1 hour ago", logo: "apple"},
+            {name: "Charlotte H.", location: "Wisconsin", company: "Amazon", position: "Delivery Driver", time: "1 hour ago", logo: "amazon"},
+            {name: "Lucas M.", location: "Minnesota", company: "Netflix", position: "Content Analyst", time: "1 hour ago", logo: "netflix"},
+            {name: "Amelia B.", location: "Oregon", company: "Tesla", position: "Production Worker", time: "1 hour ago", logo: "tesla"},
+            {name: "Mason C.", location: "Louisiana", company: "Marvel", position: "Editorial Assistant", time: "1 hour ago", logo: "marvel"},
+            {name: "Harper L.", location: "Alabama", company: "Disney", position: "Customer Care", time: "1 hour ago", logo: "disney"},
+            {name: "Elijah S.", location: "Kentucky", company: "Microsoft", position: "Help Desk", time: "1 hour ago", logo: "microsoft"},
+            {name: "Abigail W.", location: "Oklahoma", company: "YouTube", position: "Video Assistant", time: "1 hour ago", logo: "youtube"},
+            {name: "Alexander G.", location: "Iowa", company: "Walmart", position: "Stock Associate", time: "1 hour ago", logo: "walmart"},
+            {name: "Emily T.", location: "Utah", company: "Apple", position: "Support Agent", time: "1 hour ago", logo: "apple"},
+            {name: "Jacob M.", location: "Nevada", company: "Amazon", position: "Fulfillment", time: "1 hour ago", logo: "amazon"},
+            {name: "Ella R.", location: "New Mexico", company: "Netflix", position: "Content Specialist", time: "1 hour ago", logo: "netflix"}
+        ];
+
+        // Company logo mapping
+        const companyLogos = {
+            apple: "https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg",
+            marvel: "https://upload.wikimedia.org/wikipedia/commons/0/04/MarvelLogo.svg",
+            netflix: "https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg",
+            youtube: "https://upload.wikimedia.org/wikipedia/commons/7/75/YouTube_social_white_squircle_%282017%29.svg",
+            tesla: "https://upload.wikimedia.org/wikipedia/commons/b/bb/Tesla_T_symbol.svg",
+            amazon: "https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg",
+            walmart: "https://upload.wikimedia.org/wikipedia/commons/1/14/Walmart_Spark.svg",
+            disney: "https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg",
+            microsoft: "https://upload.wikimedia.org/wikipedia/commons/9/96/Microsoft_logo_%282012%29.svg"
+        };
+
+        // Initialize live feed
+        function initializeLiveFeed() {
+            const feedContainer = document.getElementById('live-feed');
+            
+            jobMatches.forEach(match => {
+                const firstLetter = match.name.charAt(0);
+                const feedItem = document.createElement('div');
+                feedItem.className = 'feed-item';
+                feedItem.innerHTML = `
+                    <div class="feed-avatar">${firstLetter}</div>
+                    <div class="feed-details">
+                        <p class="feed-text">
+                            <strong>${match.name}</strong> from ${match.location} matched with 
+                            <span class="feed-company">
+                                <img src="${companyLogos[match.logo]}" alt="${match.company}">
+                                ${match.company}
+                            </span>
+                        </p>
+                        <p class="feed-time">${match.time}</p>
+                    </div>
+                `;
+                feedContainer.appendChild(feedItem);
+            });
+            
+            // Auto-scroll feed
+            let scrollPosition = 0;
+            setInterval(() => {
+                scrollPosition += 1;
+                if (scrollPosition >= feedContainer.scrollHeight - feedContainer.clientHeight) {
+                    scrollPosition = 0;
+                }
+                feedContainer.scrollTop = scrollPosition;
+            }, 100);
+        }
+
+        // Carousel functionality
+        function initializeCarousel() {
+            const carousel = document.getElementById('carousel');
+            const dots = document.querySelectorAll('.carousel-dot');
+            const cardWidth = document.querySelector('.job-card').offsetWidth + 25; // card + gap
+            let currentIndex = 0;
+            const totalSlides = 3; // We have 3 slides (sets of 3 cards)
+            
+            function goToSlide(index) {
+                currentIndex = index;
+                const offset = -currentIndex * cardWidth * 3;
+                carousel.style.transform = `translateX(${offset}px)`;
+                
+                // Update dots
+                dots.forEach((dot, i) => {
+                    dot.classList.toggle('active', i === currentIndex);
+                });
+            }
+            
+            // Click handlers for dots
+            dots.forEach(dot => {
+                dot.addEventListener('click', () => {
+                    goToSlide(parseInt(dot.dataset.index));
+                });
+            });
+            
+            // Auto-advance carousel
+            setInterval(() => {
+                currentIndex = (currentIndex + 1) % totalSlides;
+                goToSlide(currentIndex);
+            }, 5000);
+        }
+
         // Live jobs counter animation
         function animateCounter() {
             const counter = document.getElementById('live-jobs-count');
@@ -437,27 +940,12 @@
             setTimeout(animateCounter, 30000);
         }
         
-        // Start counter animation
-        animateCounter();
-        
-        // Simulate live updates to the feed
-        function simulateLiveUpdates() {
-            const feed = document.querySelector('.jobs-feed');
-            if (feed.children.length > 0) {
-                // Move first job to bottom to simulate new jobs coming in
-                const firstJob = feed.children[0];
-                feed.appendChild(firstJob.cloneNode(true));
-                setTimeout(() => {
-                    feed.removeChild(firstJob);
-                }, 500);
-            }
-            
-            // Run every 45 seconds
-            setTimeout(simulateLiveUpdates, 45000);
-        }
-        
-        // Start live updates simulation
-        setTimeout(simulateLiveUpdates, 15000);
+        // Initialize everything when DOM loads
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeLiveFeed();
+            initializeCarousel();
+            animateCounter();
+        });
     </script>
 </body>
 </html>
