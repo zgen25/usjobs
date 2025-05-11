@@ -268,9 +268,6 @@
             bottom: 20px;
             left: 20px;
             z-index: 100;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
             width: 300px;
         }
         
@@ -719,9 +716,7 @@
     
     <!-- Feed Popups Container -->
     <div class="feed-popup-container">
-        <div class="feed-popup" id="feed-popup-1"></div>
-        <div class="feed-popup" id="feed-popup-2"></div>
-        <div class="feed-popup" id="feed-popup-3"></div>
+        <div class="feed-popup" id="feed-popup"></div>
     </div>
     
     <script>
@@ -772,66 +767,48 @@
             microsoft: "https://upload.wikimedia.org/wikipedia/commons/9/96/Microsoft_logo_%282012%29.svg"
         };
 
-        // Initialize live feed popups
+        // Initialize single popup feed
         function initializeLiveFeed() {
-            const popups = [
-                document.getElementById('feed-popup-1'),
-                document.getElementById('feed-popup-2'),
-                document.getElementById('feed-popup-3')
-            ];
-            
+            const popup = document.getElementById('feed-popup');
             let currentIndex = 0;
             
-            // Show initial popups
-            for (let i = 0; i < popups.length; i++) {
+            function showNextPopup() {
                 if (currentIndex >= jobMatches.length) currentIndex = 0;
-                updatePopup(popups[i], jobMatches[currentIndex]);
-                popups[i].classList.add('active');
+                const match = jobMatches[currentIndex];
+                const photoUrl = match.gender === "male" ? 
+                    `https://xsgames.co/randomusers/avatar.php?g=male&${Math.random()}` : 
+                    `https://xsgames.co/randomusers/avatar.php?g=female&${Math.random()}`;
+                
+                popup.innerHTML = `
+                    <div class="feed-avatar">
+                        <img src="${photoUrl}" alt="${match.name}">
+                    </div>
+                    <div class="feed-details">
+                        <p class="feed-text">
+                            <strong>${match.name}</strong> from ${match.location} ${match.action} 
+                            <span class="feed-company">
+                                <img src="${companyLogos[match.logo]}" alt="${match.company}">
+                                ${match.company}
+                            </span>
+                        </p>
+                        <p class="feed-time">${match.time}</p>
+                    </div>
+                `;
+                
+                // Show with animation
+                popup.classList.add('active');
+                
+                // Hide after 5 seconds and show next
+                setTimeout(() => {
+                    popup.classList.remove('active');
+                    setTimeout(showNextPopup, 1000); // 1 second delay between popups
+                }, 5000);
+                
                 currentIndex++;
             }
             
-            // Rotate popups every 5 seconds
-            setInterval(() => {
-                // Hide oldest popup
-                popups[0].classList.remove('active');
-                
-                // Shift popups up
-                const temp = popups[0];
-                popups[0] = popups[1];
-                popups[1] = popups[2];
-                popups[2] = temp;
-                
-                // Update and show new popup at bottom
-                if (currentIndex >= jobMatches.length) currentIndex = 0;
-                updatePopup(popups[2], jobMatches[currentIndex]);
-                setTimeout(() => {
-                    popups[2].classList.add('active');
-                }, 300);
-                
-                currentIndex++;
-            }, 5000);
-        }
-        
-        function updatePopup(popup, match) {
-            const photoUrl = match.gender === "male" ? 
-                `https://xsgames.co/randomusers/avatar.php?g=male&${Math.random()}` : 
-                `https://xsgames.co/randomusers/avatar.php?g=female&${Math.random()}`;
-            
-            popup.innerHTML = `
-                <div class="feed-avatar">
-                    <img src="${photoUrl}" alt="${match.name}">
-                </div>
-                <div class="feed-details">
-                    <p class="feed-text">
-                        <strong>${match.name}</strong> from ${match.location} ${match.action} 
-                        <span class="feed-company">
-                            <img src="${companyLogos[match.logo]}" alt="${match.company}">
-                            ${match.company}
-                        </span>
-                    </p>
-                    <p class="feed-time">${match.time}</p>
-                </div>
-            `;
+            // Start the cycle
+            showNextPopup();
         }
 
         // Live jobs counter animation
