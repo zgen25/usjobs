@@ -3,252 +3,461 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JobConnect USA | Find Your Dream Job Today</title>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Roboto:wght@500;700&display=swap" rel="stylesheet">
+    <title>Premium Job Opportunities | Apply Now</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* CSS styles will go here */
+        :root {
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --background: #f8fafc;
+            --card-bg: #ffffff;
+            --text: #1e293b;
+            --text-light: #64748b;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+        
+        body {
+            background-color: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background-color: var(--card-bg);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo i {
+            font-size: 28px;
+        }
+        
+        .live-counter {
+            background-color: #fef2f2;
+            color: #dc2626;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .live-counter::before {
+            content: "";
+            display: block;
+            width: 8px;
+            height: 8px;
+            background-color: #dc2626;
+            border-radius: 50%;
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.3; }
+            100% { opacity: 1; }
+        }
+        
+        main {
+            padding: 40px 0;
+        }
+        
+        .page-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .page-header h1 {
+            font-size: 36px;
+            margin-bottom: 16px;
+            font-weight: 700;
+        }
+        
+        .page-header p {
+            font-size: 18px;
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .jobs-feed {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        
+        .job-card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.03);
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .job-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0,0,0,0.08);
+        }
+        
+        .job-card-header {
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        
+        .company-logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 8px;
+            background-color: #f8fafc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+        
+        .company-logo img {
+            max-width: 80%;
+            max-height: 80%;
+        }
+        
+        .job-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        
+        .company-name {
+            color: var(--text-light);
+            font-size: 14px;
+        }
+        
+        .job-card-body {
+            padding: 20px;
+        }
+        
+        .job-meta {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 14px;
+            color: var(--text-light);
+        }
+        
+        .meta-item i {
+            font-size: 16px;
+            color: var(--primary);
+        }
+        
+        .job-description {
+            font-size: 15px;
+            margin-bottom: 20px;
+            color: var(--text);
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .apply-btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            text-align: center;
+            text-decoration: none;
+        }
+        
+        .apply-btn:hover {
+            background-color: var(--primary-hover);
+        }
+        
+        .job-card-footer {
+            padding: 15px 20px;
+            background-color: #f8fafc;
+            border-top: 1px solid #f1f5f9;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .job-type {
+            font-size: 13px;
+            padding: 4px 10px;
+            border-radius: 20px;
+            background-color: #e0e7ff;
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        .posted-time {
+            font-size: 13px;
+            color: var(--text-light);
+        }
+        
+        .urgent-tag {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: #dc2626;
+            color: white;
+            font-size: 12px;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+        
+        .job-card {
+            position: relative;
+        }
+        
+        @media (max-width: 768px) {
+            .jobs-feed {
+                grid-template-columns: 1fr;
+            }
+            
+            .page-header h1 {
+                font-size: 28px;
+            }
+            
+            .page-header p {
+                font-size: 16px;
+            }
+        }
     </style>
 </head>
 <body>
-    <header class="main-header">
+    <header>
         <div class="container">
-            <div class="logo-container">
-                <img src="jobconnect-logo.png" alt="JobConnect USA" class="logo">
-                <span class="trust-badge">Trusted by 1.2M+ Job Seekers</span>
-            </div>
-            <div class="header-cta">
-                <span class="live-jobs-counter">🔥 <span id="liveJobs">1,284</span> New Jobs Today</span>
-                <button class="primary-btn">Post Your Resume</button>
+            <div class="header-content">
+                <a href="#" class="logo">
+                    <i class="fas fa-briefcase"></i>
+                    <span>JobConnect</span>
+                </a>
+                <div class="live-counter">
+                    <span id="live-jobs-count">1,284</span> jobs available
+                </div>
             </div>
         </div>
     </header>
-
-    <section class="hero-section">
+    
+    <main>
         <div class="container">
-            <div class="hero-content">
-                <h1>Find Your Perfect Job in <span class="highlight">Just 60 Seconds</span></h1>
-                <p class="subtitle">Join 850,000+ Americans who found jobs through our platform this year</p>
-                
-                <div class="search-box">
-                    <input type="text" placeholder="Job title, keywords, or company">
-                    <input type="text" placeholder="City, state, or zip code">
-                    <button class="primary-btn">Find Jobs Now</button>
-                </div>
-                
-                <div class="trust-logos">
-                    <img src="forbes-logo.png" alt="Featured in Forbes">
-                    <img src="wsj-logo.png" alt="Featured in Wall Street Journal">
-                    <img src="cnn-logo.png" alt="Featured in CNN">
-                </div>
-            </div>
-            <div class="hero-image">
-                <img src="happy-worker.png" alt="Happy worker">
-            </div>
-        </div>
-    </section>
-
-    <section class="job-categories">
-        <div class="container">
-            <h2>Popular Job Categories</h2>
-            <p class="section-subtitle">Browse thousands of jobs from America's top employers</p>
-            
-            <div class="category-grid">
-                <!-- Each category card will go here -->
-                <div class="category-card" onclick="window.location.href='https://go4affm.com/c/?p=26712&o=18654'">
-                    <div class="card-header">
-                        <img src="cleaning-icon.png" alt="Cleaning Jobs">
-                        <h3>Cleaning Jobs</h3>
-                    </div>
-                    <p>1,240+ openings nationwide</p>
-                    <div class="urgent-tag">URGENT HIRING</div>
-                </div>
-                
-                <!-- Repeat for all other job categories -->
+            <div class="page-header">
+                <h1>Premium Job Opportunities</h1>
+                <p>Exclusive job openings from America's top companies. Apply directly today.</p>
             </div>
             
-            <button class="secondary-btn">View All Job Categories</button>
-        </div>
-    </section>
-
-    <section class="featured-jobs">
-        <div class="container">
-            <h2>Featured Jobs Hiring Now</h2>
-            <p class="section-subtitle">These companies are actively hiring - apply today!</p>
-            
-            <div class="job-listings">
-                <!-- Featured job cards will go here -->
-                <div class="job-card" onclick="window.location.href='https://go4affm.com/c/?p=26712&o=12688'">
-                    <div class="company-logo">
-                        <img src="apple-logo.png" alt="Apple">
-                    </div>
-                    <div class="job-details">
-                        <h3>Apple Customer Support</h3>
-                        <p class="company-name">Apple Inc.</p>
-                        <p class="location">Remote (USA)</p>
-                        <div class="job-meta">
-                            <span class="salary">$28-$35/hr</span>
-                            <span class="job-type">Full-time</span>
+            <div class="jobs-feed">
+                <!-- Apple Jobs -->
+                <div class="job-card">
+                    <div class="job-card-header">
+                        <div class="company-logo">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple">
+                        </div>
+                        <div>
+                            <h3 class="job-title">Customer Support Specialist</h3>
+                            <p class="company-name">Apple Inc.</p>
                         </div>
                     </div>
-                    <div class="apply-btn-container">
-                        <button class="primary-btn">Apply Now</button>
-                        <p class="time-posted">Posted 2 hours ago</p>
+                    <div class="job-card-body">
+                        <div class="job-meta">
+                            <div class="meta-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Remote (USA)</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-dollar-sign"></i>
+                                <span>$28-$35/hr</span>
+                            </div>
+                        </div>
+                        <p class="job-description">
+                            Join Apple's customer support team working from home. Provide exceptional service to Apple customers with full training provided.
+                        </p>
+                        <a href="https://go4affm.com/c/?p=26712&o=12688" class="apply-btn">Apply Now</a>
+                    </div>
+                    <div class="job-card-footer">
+                        <span class="job-type">Full-time</span>
+                        <span class="posted-time">Posted 2h ago</span>
+                    </div>
+                    <div class="urgent-tag">HIRING NOW</div>
+                </div>
+                
+                <!-- Marvel Jobs -->
+                <div class="job-card">
+                    <div class="job-card-header">
+                        <div class="company-logo">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/MarvelLogo.svg" alt="Marvel">
+                        </div>
+                        <div>
+                            <h3 class="job-title">Content Editor</h3>
+                            <p class="company-name">Marvel Entertainment</p>
+                        </div>
+                    </div>
+                    <div class="job-card-body">
+                        <div class="job-meta">
+                            <div class="meta-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>New York, NY</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-dollar-sign"></i>
+                                <span>$60k-$75k/year</span>
+                            </div>
+                        </div>
+                        <p class="job-description">
+                            Work with Marvel's editorial team to develop and edit content for comics and digital media. Passion for comics required.
+                        </p>
+                        <a href="https://go4affm.com/c/?p=26712&o=10729" class="apply-btn">Apply Now</a>
+                    </div>
+                    <div class="job-card-footer">
+                        <span class="job-type">Full-time</span>
+                        <span class="posted-time">Posted 1d ago</span>
                     </div>
                 </div>
                 
-                <!-- Repeat for other featured jobs -->
-            </div>
-        </div>
-    </section>
-
-    <section class="testimonials">
-        <div class="container">
-            <h2>Success Stories</h2>
-            <p class="section-subtitle">Real people, real jobs, real success</p>
-            
-            <div class="testimonial-carousel">
-                <!-- Testimonial slides will go here -->
-                <div class="testimonial-slide">
-                    <div class="testimonial-content">
-                        <img src="user-avatar1.jpg" alt="Sarah J." class="user-avatar">
-                        <p class="testimonial-text">"I found my dream remote job at Netflix within 3 days of using JobConnect! The application process was so simple."</p>
-                        <p class="user-name">Sarah J., Texas</p>
-                        <p class="user-job">Content Moderator at Netflix</p>
-                        <div class="stars">★★★★★</div>
+                <!-- Netflix Jobs -->
+                <div class="job-card">
+                    <div class="job-card-header">
+                        <div class="company-logo">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix">
+                        </div>
+                        <div>
+                            <h3 class="job-title">Content Moderator</h3>
+                            <p class="company-name">Netflix</p>
+                        </div>
                     </div>
+                    <div class="job-card-body">
+                        <div class="job-meta">
+                            <div class="meta-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Remote (USA)</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-dollar-sign"></i>
+                                <span>$22-$30/hr</span>
+                            </div>
+                        </div>
+                        <p class="job-description">
+                            Help maintain Netflix's content quality standards by reviewing and rating content. Flexible hours available.
+                        </p>
+                        <a href="https://go4affm.com/c/?p=26712&o=10730" class="apply-btn">Apply Now</a>
+                    </div>
+                    <div class="job-card-footer">
+                        <span class="job-type">Part-time</span>
+                        <span class="posted-time">Posted 5h ago</span>
+                    </div>
+                    <div class="urgent-tag">HIRING NOW</div>
                 </div>
+                
+                <!-- Continue with all other job listings in the same format -->
+                <!-- Each job card should include:
+                     1. Company logo
+                     2. Job title
+                     3. Company name
+                     4. Location and salary meta info
+                     5. Short description
+                     6. Your affiliate link as the Apply Now button
+                     7. Job type and posted time
+                     8. Urgent tag if applicable
+                -->
             </div>
         </div>
-    </section>
-
-    <section class="how-it-works">
-        <div class="container">
-            <h2>How JobConnect Works</h2>
-            <p class="section-subtitle">Get hired in just 3 simple steps</p>
-            
-            <div class="steps-container">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <h3>Create Your Profile</h3>
-                    <p>Tell us about your skills and experience</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <h3>Match With Jobs</h3>
-                    <p>Our AI matches you with perfect opportunities</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <h3>Get Hired Fast</h3>
-                    <p>Apply directly to employers hiring now</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="cta-section">
-        <div class="container">
-            <h2>Ready to Find Your Dream Job?</h2>
-            <p class="section-subtitle">Join thousands of happy workers today</p>
-            <button class="primary-btn large-btn">Get Started Now - It's Free</button>
-            <p class="guarantee-text">✅ 100% free for job seekers - no hidden fees</p>
-        </div>
-    </section>
-
-    <div class="live-job-feed">
-        <div class="feed-header">
-            <h4>Live Job Matches</h4>
-            <span class="online-dot"></span>
-            <span class="online-text">LIVE</span>
-        </div>
-        <div class="feed-content">
-            <div class="job-match">
-                <p><strong>Michael R.</strong> from Ohio matched with <strong>Amazon Delivery</strong></p>
-                <span class="time-ago">2 minutes ago</span>
-            </div>
-            <div class="job-match">
-                <p><strong>Jennifer K.</strong> from Florida matched with <strong>Apple Remote Support</strong></p>
-                <span class="time-ago">5 minutes ago</span>
-            </div>
-            <!-- More fake matches will be added dynamically via JS -->
-        </div>
-    </div>
-
-    <footer class="main-footer">
-        <div class="container">
-            <div class="footer-links">
-                <div class="footer-column">
-                    <h4>For Job Seekers</h4>
-                    <ul>
-                        <li><a href="#">Browse Jobs</a></li>
-                        <li><a href="#">Create Resume</a></li>
-                        <li><a href="#">Job Alerts</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h4>Resources</h4>
-                    <ul>
-                        <li><a href="#">Career Advice</a></li>
-                        <li><a href="#">Resume Tips</a></li>
-                        <li><a href="#">Interview Prep</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h4>Company</h4>
-                    <ul>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Contact</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>© 2023 JobConnect USA. All rights reserved.</p>
-                <div class="social-links">
-                    <a href="#"><img src="facebook-icon.png" alt="Facebook"></a>
-                    <a href="#"><img src="twitter-icon.png" alt="Twitter"></a>
-                    <a href="#"><img src="linkedin-icon.png" alt="LinkedIn"></a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
+    </main>
+    
     <script>
-        // Sample code for the live job feed
-        const jobMatches = [
-            {name: "David S.", location: "California", company: "Tesla", position: "Production Associate"},
-            {name: "Lisa M.", location: "New York", company: "Marvel", position: "Content Editor"},
-            // Add all other sample matches
-        ];
-        
-        function updateLiveJobFeed() {
-            const feed = document.querySelector('.feed-content');
-            const randomMatch = jobMatches[Math.floor(Math.random() * jobMatches.length)];
-            const timeOptions = ['1 minute ago', '3 minutes ago', '5 minutes ago', '7 minutes ago'];
-            const randomTime = timeOptions[Math.floor(Math.random() * timeOptions.length)];
+        // Live jobs counter animation
+        function animateCounter() {
+            const counter = document.getElementById('live-jobs-count');
+            let current = parseInt(counter.textContent.replace(/,/g, ''));
+            const target = current + Math.floor(Math.random() * 20) + 5;
             
-            const newMatch = document.createElement('div');
-            newMatch.className = 'job-match';
-            newMatch.innerHTML = `
-                <p><strong>${randomMatch.name}</strong> from ${randomMatch.location} matched with <strong>${randomMatch.company}</strong></p>
-                <span class="time-ago">${randomTime}</span>
-            `;
+            const increment = () => {
+                current += 1;
+                counter.textContent = current.toLocaleString();
+                if (current < target) {
+                    setTimeout(increment, 50);
+                }
+            };
             
-            feed.insertBefore(newMatch, feed.firstChild);
-            if (feed.children.length > 5) {
-                feed.removeChild(feed.lastChild);
-            }
+            setTimeout(increment, 2000);
             
-            // Update live jobs counter
-            const jobsCounter = document.getElementById('liveJobs');
-            const currentCount = parseInt(jobsCounter.textContent);
-            jobsCounter.textContent = currentCount + Math.floor(Math.random() * 3) + 1;
+            // Run every 30 seconds
+            setTimeout(animateCounter, 30000);
         }
         
-        // Update every 45 seconds
-        setInterval(updateLiveJobFeed, 45000);
-        // Initial update
-        updateLiveJobFeed();
+        // Start counter animation
+        animateCounter();
+        
+        // Simulate live updates to the feed
+        function simulateLiveUpdates() {
+            const feed = document.querySelector('.jobs-feed');
+            if (feed.children.length > 0) {
+                // Move first job to bottom to simulate new jobs coming in
+                const firstJob = feed.children[0];
+                feed.appendChild(firstJob.cloneNode(true));
+                setTimeout(() => {
+                    feed.removeChild(firstJob);
+                }, 500);
+            }
+            
+            // Run every 45 seconds
+            setTimeout(simulateLiveUpdates, 45000);
+        }
+        
+        // Start live updates simulation
+        setTimeout(simulateLiveUpdates, 15000);
     </script>
 </body>
 </html>
