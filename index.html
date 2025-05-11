@@ -162,11 +162,18 @@
             max-height: 80%;
         }
         
+        .job-title-wrapper {
+            flex: 1;
+            min-width: 0; /* Prevents text overflow */
+        }
+        
         .job-title {
             font-size: 18px;
             font-weight: 600;
             margin-bottom: 4px;
-            padding-right: 30px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
         
         .company-name {
@@ -251,15 +258,9 @@
         }
         
         .urgent-tag {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background-color: #dc2626;
-            color: white;
-            font-size: 12px;
-            padding: 3px 10px;
-            border-radius: 20px;
-            font-weight: 600;
+            position: static; /* Changed from absolute */
+            margin-left: 10px;
+            flex-shrink: 0;
         }
         
         .feed-popup-container {
