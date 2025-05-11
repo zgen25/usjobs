@@ -120,11 +120,19 @@
             overflow: hidden;
         }
         
-        .carousel-container {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
+        .carousel-row {
+            display: flex;
             gap: 25px;
+            margin-bottom: 25px;
             transition: transform 0.5s ease;
+        }
+        
+        .carousel-row:nth-child(2) {
+            transform: translateX(50px);
+        }
+        
+        .carousel-row:nth-child(3) {
+            transform: translateX(100px);
         }
         
         .job-card {
@@ -135,6 +143,8 @@
             transition: transform 0.2s, box-shadow 0.2s;
             border: 1px solid #e2e8f0;
             position: relative;
+            min-width: calc(33.333% - 17px);
+            flex-shrink: 0;
         }
         
         .job-card:hover {
@@ -367,8 +377,12 @@
             justify-content: center;
             flex-shrink: 0;
             overflow: hidden;
-            font-weight: 600;
-            color: var(--primary);
+        }
+        
+        .feed-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
         
         .feed-details {
@@ -404,8 +418,13 @@
         }
         
         @media (max-width: 1024px) {
-            .carousel-container {
-                grid-template-columns: repeat(2, 1fr);
+            .job-card {
+                min-width: calc(50% - 13px);
+            }
+            
+            .carousel-row:nth-child(2),
+            .carousel-row:nth-child(3) {
+                transform: none;
             }
         }
         
@@ -418,8 +437,8 @@
                 font-size: 16px;
             }
             
-            .carousel-container {
-                grid-template-columns: 1fr;
+            .job-card {
+                min-width: 100%;
             }
             
             .job-card-header {
@@ -478,7 +497,7 @@
             </div>
             
             <div class="jobs-carousel">
-                <div class="carousel-container" id="carousel">
+                <div class="carousel-row" id="row1">
                     <!-- Apple Jobs -->
                     <div class="job-card">
                         <div class="job-card-header">
@@ -579,7 +598,9 @@
                             <span class="posted-time">Posted 5h ago</span>
                         </div>
                     </div>
-                    
+                </div>
+                
+                <div class="carousel-row" id="row2">
                     <!-- YouTube Jobs -->
                     <div class="job-card">
                         <div class="job-card-header">
@@ -680,7 +701,9 @@
                             <span class="posted-time">Posted 1h ago</span>
                         </div>
                     </div>
-                    
+                </div>
+                
+                <div class="carousel-row" id="row3">
                     <!-- Walmart Jobs -->
                     <div class="job-card">
                         <div class="job-card-header">
@@ -792,7 +815,7 @@
             <div class="live-feed-container">
                 <div class="live-feed-header">
                     <div class="live-feed-title">
-                        <span>Live Job Matches</span>
+                        <span>Recent Hiring Activity</span>
                         <div class="live-indicator">LIVE</div>
                     </div>
                     <a href="#" class="view-all">View All</a>
@@ -807,36 +830,36 @@
     <script>
         // Job data for the live feed
         const jobMatches = [
-            {name: "Michael R.", location: "Ohio", company: "Amazon", position: "Delivery Driver", time: "2 minutes ago", logo: "amazon"},
-            {name: "Jennifer K.", location: "Florida", company: "Apple", position: "Remote Support", time: "5 minutes ago", logo: "apple"},
-            {name: "David S.", location: "California", company: "Tesla", position: "Production Associate", time: "8 minutes ago", logo: "tesla"},
-            {name: "Lisa M.", location: "New York", company: "Marvel", position: "Content Editor", time: "12 minutes ago", logo: "marvel"},
-            {name: "Robert T.", location: "Texas", company: "Netflix", position: "Content Moderator", time: "15 minutes ago", logo: "netflix"},
-            {name: "Sarah J.", location: "Illinois", company: "Disney", position: "Customer Service", time: "18 minutes ago", logo: "disney"},
-            {name: "James P.", location: "Georgia", company: "Microsoft", position: "Technical Support", time: "22 minutes ago", logo: "microsoft"},
-            {name: "Emily W.", location: "Washington", company: "YouTube", position: "Video Editor", time: "25 minutes ago", logo: "youtube"},
-            {name: "Daniel H.", location: "Colorado", company: "Walmart", position: "Store Associate", time: "28 minutes ago", logo: "walmart"},
-            {name: "Olivia M.", location: "Arizona", company: "Apple", position: "Customer Support", time: "32 minutes ago", logo: "apple"},
-            {name: "William B.", location: "Michigan", company: "Amazon", position: "Warehouse Worker", time: "35 minutes ago", logo: "amazon"},
-            {name: "Sophia L.", location: "Pennsylvania", company: "Netflix", position: "Content Reviewer", time: "40 minutes ago", logo: "netflix"},
-            {name: "Ethan C.", location: "Virginia", company: "Tesla", position: "Assembly Technician", time: "45 minutes ago", logo: "tesla"},
-            {name: "Ava S.", location: "North Carolina", company: "Marvel", position: "Graphic Designer", time: "50 minutes ago", logo: "marvel"},
-            {name: "Noah W.", location: "Massachusetts", company: "Disney", position: "Help Desk Agent", time: "55 minutes ago", logo: "disney"},
-            {name: "Isabella G.", location: "Indiana", company: "Microsoft", position: "Support Specialist", time: "1 hour ago", logo: "microsoft"},
-            {name: "Liam F.", location: "Tennessee", company: "YouTube", position: "Video Producer", time: "1 hour ago", logo: "youtube"},
-            {name: "Mia D.", location: "Missouri", company: "Walmart", position: "Cashier", time: "1 hour ago", logo: "walmart"},
-            {name: "Benjamin P.", location: "Maryland", company: "Apple", position: "Tech Support", time: "1 hour ago", logo: "apple"},
-            {name: "Charlotte H.", location: "Wisconsin", company: "Amazon", position: "Delivery Driver", time: "1 hour ago", logo: "amazon"},
-            {name: "Lucas M.", location: "Minnesota", company: "Netflix", position: "Content Analyst", time: "1 hour ago", logo: "netflix"},
-            {name: "Amelia B.", location: "Oregon", company: "Tesla", position: "Production Worker", time: "1 hour ago", logo: "tesla"},
-            {name: "Mason C.", location: "Louisiana", company: "Marvel", position: "Editorial Assistant", time: "1 hour ago", logo: "marvel"},
-            {name: "Harper L.", location: "Alabama", company: "Disney", position: "Customer Care", time: "1 hour ago", logo: "disney"},
-            {name: "Elijah S.", location: "Kentucky", company: "Microsoft", position: "Help Desk", time: "1 hour ago", logo: "microsoft"},
-            {name: "Abigail W.", location: "Oklahoma", company: "YouTube", position: "Video Assistant", time: "1 hour ago", logo: "youtube"},
-            {name: "Alexander G.", location: "Iowa", company: "Walmart", position: "Stock Associate", time: "1 hour ago", logo: "walmart"},
-            {name: "Emily T.", location: "Utah", company: "Apple", position: "Support Agent", time: "1 hour ago", logo: "apple"},
-            {name: "Jacob M.", location: "Nevada", company: "Amazon", position: "Fulfillment", time: "1 hour ago", logo: "amazon"},
-            {name: "Ella R.", location: "New Mexico", company: "Netflix", position: "Content Specialist", time: "1 hour ago", logo: "netflix"}
+            {name: "Michael R.", location: "Ohio", company: "Amazon", position: "Delivery Driver", time: "2 minutes ago", logo: "amazon", action: "just got hired as"},
+            {name: "Jennifer K.", location: "Florida", company: "Apple", position: "Remote Support", time: "5 minutes ago", logo: "apple", action: "started new position at"},
+            {name: "David S.", location: "California", company: "Tesla", position: "Production Associate", time: "8 minutes ago", logo: "tesla", action: "accepted offer from"},
+            {name: "Lisa M.", location: "New York", company: "Marvel", position: "Content Editor", time: "12 minutes ago", logo: "marvel", action: "landed a job at"},
+            {name: "Robert T.", location: "Texas", company: "Netflix", position: "Content Moderator", time: "15 minutes ago", logo: "netflix", action: "joined the team at"},
+            {name: "Sarah J.", location: "Illinois", company: "Disney", position: "Customer Service", time: "18 minutes ago", logo: "disney", action: "was selected for"},
+            {name: "James P.", location: "Georgia", company: "Microsoft", position: "Technical Support", time: "22 minutes ago", logo: "microsoft", action: "got the position at"},
+            {name: "Emily W.", location: "Washington", company: "YouTube", position: "Video Editor", time: "25 minutes ago", logo: "youtube", action: "signed contract with"},
+            {name: "Daniel H.", location: "Colorado", company: "Walmart", position: "Store Associate", time: "28 minutes ago", logo: "walmart", action: "began working at"},
+            {name: "Olivia M.", location: "Arizona", company: "Apple", position: "Customer Support", time: "32 minutes ago", logo: "apple", action: "was recruited by"},
+            {name: "William B.", location: "Michigan", company: "Amazon", position: "Warehouse Worker", time: "35 minutes ago", logo: "amazon", action: "started today at"},
+            {name: "Sophia L.", location: "Pennsylvania", company: "Netflix", position: "Content Reviewer", time: "40 minutes ago", logo: "netflix", action: "was chosen for"},
+            {name: "Ethan C.", location: "Virginia", company: "Tesla", position: "Assembly Technician", time: "45 minutes ago", logo: "tesla", action: "got placed at"},
+            {name: "Ava S.", location: "North Carolina", company: "Marvel", position: "Graphic Designer", time: "50 minutes ago", logo: "marvel", action: "was hired by"},
+            {name: "Noah W.", location: "Massachusetts", company: "Disney", position: "Help Desk Agent", time: "55 minutes ago", logo: "disney", action: "started new role at"},
+            {name: "Isabella G.", location: "Indiana", company: "Microsoft", position: "Support Specialist", time: "1 hour ago", logo: "microsoft", action: "accepted position at"},
+            {name: "Liam F.", location: "Tennessee", company: "YouTube", position: "Video Producer", time: "1 hour ago", logo: "youtube", action: "was selected by"},
+            {name: "Mia D.", location: "Missouri", company: "Walmart", position: "Cashier", time: "1 hour ago", logo: "walmart", action: "began employment at"},
+            {name: "Benjamin P.", location: "Maryland", company: "Apple", position: "Tech Support", time: "1 hour ago", logo: "apple", action: "got the job at"},
+            {name: "Charlotte H.", location: "Wisconsin", company: "Amazon", position: "Delivery Driver", time: "1 hour ago", logo: "amazon", action: "joined"},
+            {name: "Lucas M.", location: "Minnesota", company: "Netflix", position: "Content Analyst", time: "1 hour ago", logo: "netflix", action: "was picked for"},
+            {name: "Amelia B.", location: "Oregon", company: "Tesla", position: "Production Worker", time: "1 hour ago", logo: "tesla", action: "started career at"},
+            {name: "Mason C.", location: "Louisiana", company: "Marvel", position: "Editorial Assistant", time: "1 hour ago", logo: "marvel", action: "was brought on by"},
+            {name: "Harper L.", location: "Alabama", company: "Disney", position: "Customer Care", time: "1 hour ago", logo: "disney", action: "got placed with"},
+            {name: "Elijah S.", location: "Kentucky", company: "Microsoft", position: "Help Desk", time: "1 hour ago", logo: "microsoft", action: "was recruited for"},
+            {name: "Abigail W.", location: "Oklahoma", company: "YouTube", position: "Video Assistant", time: "1 hour ago", logo: "youtube", action: "joined the staff at"},
+            {name: "Alexander G.", location: "Iowa", company: "Walmart", position: "Stock Associate", time: "1 hour ago", logo: "walmart", action: "started work at"},
+            {name: "Emily T.", location: "Utah", company: "Apple", position: "Support Agent", time: "1 hour ago", logo: "apple", action: "was chosen by"},
+            {name: "Jacob M.", location: "Nevada", company: "Amazon", position: "Fulfillment", time: "1 hour ago", logo: "amazon", action: "began new job at"},
+            {name: "Ella R.", location: "New Mexico", company: "Netflix", position: "Content Specialist", time: "1 hour ago", logo: "netflix", action: "was hired at"}
         ];
 
         // Company logo mapping
@@ -852,19 +875,32 @@
             microsoft: "https://upload.wikimedia.org/wikipedia/commons/9/96/Microsoft_logo_%282012%29.svg"
         };
 
-        // Initialize live feed
+        // Action verbs for variety
+        const actionVerbs = [
+            "got hired at", "started at", "joined", "was selected for", 
+            "landed a job at", "began working at", "was recruited by",
+            "got placed at", "was chosen for", "accepted offer from"
+        ];
+
+        // Initialize live feed with profile pictures
         function initializeLiveFeed() {
             const feedContainer = document.getElementById('live-feed');
             
-            jobMatches.forEach(match => {
-                const firstLetter = match.name.charAt(0);
+            jobMatches.forEach((match, index) => {
+                const isMale = index % 2 === 0; // Alternate between male and female
+                const photoUrl = isMale ? 
+                    `https://xsgames.co/randomusers/avatar.php?g=male&${index}` : 
+                    `https://xsgames.co/randomusers/avatar.php?g=female&${index}`;
+                
                 const feedItem = document.createElement('div');
                 feedItem.className = 'feed-item';
                 feedItem.innerHTML = `
-                    <div class="feed-avatar">${firstLetter}</div>
+                    <div class="feed-avatar">
+                        <img src="${photoUrl}" alt="${match.name}">
+                    </div>
                     <div class="feed-details">
                         <p class="feed-text">
-                            <strong>${match.name}</strong> from ${match.location} matched with 
+                            <strong>${match.name}</strong> from ${match.location} ${match.action} 
                             <span class="feed-company">
                                 <img src="${companyLogos[match.logo]}" alt="${match.company}">
                                 ${match.company}
@@ -887,18 +923,25 @@
             }, 100);
         }
 
-        // Carousel functionality
+        // Carousel functionality with independent row sliding
         function initializeCarousel() {
-            const carousel = document.getElementById('carousel');
+            const rows = [
+                document.getElementById('row1'),
+                document.getElementById('row2'),
+                document.getElementById('row3')
+            ];
             const dots = document.querySelectorAll('.carousel-dot');
-            const cardWidth = document.querySelector('.job-card').offsetWidth + 25; // card + gap
+            const cardsPerRow = 9; // Total cards available per row (3 visible at a time)
             let currentIndex = 0;
-            const totalSlides = 3; // We have 3 slides (sets of 3 cards)
             
             function goToSlide(index) {
                 currentIndex = index;
-                const offset = -currentIndex * cardWidth * 3;
-                carousel.style.transform = `translateX(${offset}px)`;
+                const offset = -currentIndex * 100;
+                
+                // Slide each row independently with different offsets
+                rows[0].style.transform = `translateX(${offset}px)`;
+                rows[1].style.transform = `translateX(${offset + 50}px)`;
+                rows[2].style.transform = `translateX(${offset + 100}px)`;
                 
                 // Update dots
                 dots.forEach((dot, i) => {
@@ -915,7 +958,7 @@
             
             // Auto-advance carousel
             setInterval(() => {
-                currentIndex = (currentIndex + 1) % totalSlides;
+                currentIndex = (currentIndex + 1) % 3; // We have 3 slides
                 goToSlide(currentIndex);
             }, 5000);
         }
