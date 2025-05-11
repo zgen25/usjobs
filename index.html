@@ -118,21 +118,23 @@
             position: relative;
             margin: 40px 0;
             overflow: hidden;
+            height: 800px; /* Fixed height to contain all rows */
         }
         
         .carousel-row {
             display: flex;
             gap: 25px;
             margin-bottom: 25px;
+            width: 300%; /* Enough width for all slides */
             transition: transform 0.5s ease;
         }
         
         .carousel-row:nth-child(2) {
-            transform: translateX(50px);
+            transform: translateX(30px);
         }
         
         .carousel-row:nth-child(3) {
-            transform: translateX(100px);
+            transform: translateX(60px);
         }
         
         .job-card {
@@ -142,8 +144,7 @@
             box-shadow: 0 4px 6px rgba(0,0,0,0.03);
             transition: transform 0.2s, box-shadow 0.2s;
             border: 1px solid #e2e8f0;
-            position: relative;
-            min-width: calc(33.333% - 17px);
+            width: calc(33.333% - 17px);
             flex-shrink: 0;
         }
         
@@ -419,7 +420,7 @@
         
         @media (max-width: 1024px) {
             .job-card {
-                min-width: calc(50% - 13px);
+                width: calc(50% - 13px);
             }
             
             .carousel-row:nth-child(2),
@@ -438,7 +439,7 @@
             }
             
             .job-card {
-                min-width: 100%;
+                width: 100%;
             }
             
             .job-card-header {
@@ -451,6 +452,10 @@
             
             .live-feed-title {
                 font-size: 18px;
+            }
+            
+            .jobs-carousel {
+                height: auto;
             }
         }
         
@@ -598,9 +603,7 @@
                             <span class="posted-time">Posted 5h ago</span>
                         </div>
                     </div>
-                </div>
-                
-                <div class="carousel-row" id="row2">
+                    
                     <!-- YouTube Jobs -->
                     <div class="job-card">
                         <div class="job-card-header">
@@ -703,7 +706,7 @@
                     </div>
                 </div>
                 
-                <div class="carousel-row" id="row3">
+                <div class="carousel-row" id="row2">
                     <!-- Walmart Jobs -->
                     <div class="job-card">
                         <div class="job-card-header">
@@ -803,6 +806,310 @@
                             <span class="posted-time">Posted 1d ago</span>
                         </div>
                     </div>
+                    
+                    <!-- Cleaning Jobs -->
+                    <div class="job-card">
+                        <div class="job-card-header">
+                            <div class="company-logo">
+                                <img src="https://cdn-icons-png.flaticon.com/512/3039/3039008.png" alt="Cleaning">
+                            </div>
+                            <div>
+                                <h3 class="job-title">Cleaning Specialist</h3>
+                                <p class="company-name">Premium Cleaners</p>
+                            </div>
+                            <div class="urgent-tag">HIRING NOW</div>
+                        </div>
+                        <div class="job-card-body">
+                            <div class="job-meta">
+                                <div class="meta-item">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span>Nationwide</span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-dollar-sign"></i>
+                                    <span>$15-$20/hr</span>
+                                </div>
+                            </div>
+                            <p class="job-description">
+                                Commercial and residential cleaning positions available. Flexible hours and no experience required.
+                            </p>
+                            <a href="https://go4affm.com/c/?p=26712&o=18654" class="apply-btn">Apply Now</a>
+                        </div>
+                        <div class="job-card-footer">
+                            <span class="job-type">Part-time</span>
+                            <span class="posted-time">Posted 4h ago</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Food Tester Jobs -->
+                    <div class="job-card">
+                        <div class="job-card-header">
+                            <div class="company-logo">
+                                <img src="https://cdn-icons-png.flaticon.com/512/3081/3081559.png" alt="Food Tester">
+                            </div>
+                            <div>
+                                <h3 class="job-title">Food Product Tester</h3>
+                                <p class="company-name">Taste Innovations</p>
+                            </div>
+                        </div>
+                        <div class="job-card-body">
+                            <div class="job-meta">
+                                <div class="meta-item">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span>Remote (USA)</span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-dollar-sign"></i>
+                                    <span>$20-$30/hr</span>
+                                </div>
+                            </div>
+                            <p class="job-description">
+                                Test and review new food products from home. Share your opinions and get paid for your taste buds!
+                            </p>
+                            <a href="https://go4affm.com/c/?p=26712&o=10726" class="apply-btn">Apply Now</a>
+                        </div>
+                        <div class="job-card-footer">
+                            <span class="job-type">Contract</span>
+                            <span class="posted-time">Posted 1d ago</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Product Tester Jobs -->
+                    <div class="job-card">
+                        <div class="job-card-header">
+                            <div class="company-logo">
+                                <img src="https://cdn-icons-png.flaticon.com/512/3246/3246749.png" alt="Product Tester">
+                            </div>
+                            <div>
+                                <h3 class="job-title">Product Tester</h3>
+                                <p class="company-name">Consumer Insights</p>
+                            </div>
+                            <div class="urgent-tag">HIRING NOW</div>
+                        </div>
+                        <div class="job-card-body">
+                            <div class="job-meta">
+                                <div class="meta-item">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span>Remote (USA)</span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-dollar-sign"></i>
+                                    <span>$18-$25/hr</span>
+                                </div>
+                            </div>
+                            <p class="job-description">
+                                Test new products before they hit the market. Keep the products you test and get paid for your feedback.
+                            </p>
+                            <a href="https://go4affm.com/c/?p=26712&o=7458" class="apply-btn">Apply Now</a>
+                        </div>
+                        <div class="job-card-footer">
+                            <span class="job-type">Contract</span>
+                            <span class="posted-time">Posted 3h ago</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="carousel-row" id="row3">
+                    <!-- Video Content Creator Jobs -->
+                    <div class="job-card">
+                        <div class="job-card-header">
+                            <div class="company-logo">
+                                <img src="https://cdn-icons-png.flaticon.com/512/2936/2936886.png" alt="Video Creator">
+                            </div>
+                            <div>
+                                <h3 class="job-title">Video Content Creator</h3>
+                                <p class="company-name">Creative Media</p>
+                            </div>
+                        </div>
+                        <div class="job-card-body">
+                            <div class="job-meta">
+                                <div class="meta-item">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span>Remote (USA)</span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-dollar-sign"></i>
+                                    <span>$25-$45/hr</span>
+                                </div>
+                            </div>
+                            <p class="job-description">
+                                Create engaging video content for social media and marketing campaigns. Portfolio required.
+                            </p>
+                            <a href="https://go4affm.com/c/?p=26712&o=10723" class="apply-btn">Apply Now</a>
+                        </div>
+                        <div class="job-card-footer">
+                            <span class="job-type">Contract</span>
+                            <span class="posted-time">Posted 2d ago</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Smartphone Tester Jobs -->
+                    <div class="job-card">
+                        <div class="job-card-header">
+                            <div class="company-logo">
+                                <img src="https://cdn-icons-png.flaticon.com/512/2541/2541979.png" alt="Smartphone Tester">
+                            </div>
+                            <div>
+                                <h3 class="job-title">Smartphone Tester</h3>
+                                <p class="company-name">Tech Evaluations</p>
+                            </div>
+                            <div class="urgent-tag">HIRING NOW</div>
+                        </div>
+                        <div class="job-card-body">
+                            <div class="job-meta">
+                                <div class="meta-item">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span>Remote (USA)</span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-dollar-sign"></i>
+                                    <span>$22-$35/hr</span>
+                                </div>
+                            </div>
+                            <p class="job-description">
+                                Test pre-release smartphones and tablets. Keep the devices and get paid for your detailed feedback.
+                            </p>
+                            <a href="https://go4affm.com/c/?p=26712&o=10720" class="apply-btn">Apply Now</a>
+                        </div>
+                        <div class="job-card-footer">
+                            <span class="job-type">Contract</span>
+                            <span class="posted-time">Posted 5h ago</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Aldi Jobs -->
+                    <div class="job-card">
+                        <div class="job-card-header">
+                            <div class="company-logo">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Aldi_Nord_201x_logo.svg" alt="Aldi">
+                            </div>
+                            <div>
+                                <h3 class="job-title">Store Associate</h3>
+                                <p class="company-name">ALDI</p>
+                            </div>
+                        </div>
+                        <div class="job-card-body">
+                            <div class="job-meta">
+                                <div class="meta-item">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span>Nationwide</span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-dollar-sign"></i>
+                                    <span>$16-$20/hr</span>
+                                </div>
+                            </div>
+                            <p class="job-description">
+                                Join ALDI's retail team with competitive pay and benefits. Fast-paced environment with growth opportunities.
+                            </p>
+                            <a href="https://go4affm.com/c/?p=26712&o=9191" class="apply-btn">Apply Now</a>
+                        </div>
+                        <div class="job-card-footer">
+                            <span class="job-type">Full-time</span>
+                            <span class="posted-time">Posted 1d ago</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Goodwill Jobs -->
+                    <div class="job-card">
+                        <div class="job-card-header">
+                            <div class="company-logo">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/9/9e/Goodwill_Industries_Logo.svg" alt="Goodwill">
+                            </div>
+                            <div>
+                                <h3 class="job-title">Retail Associate</h3>
+                                <p class="company-name">Goodwill</p>
+                            </div>
+                            <div class="urgent-tag">HIRING NOW</div>
+                        </div>
+                        <div class="job-card-body">
+                            <div class="job-meta">
+                                <div class="meta-item">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span>Nationwide</span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-dollar-sign"></i>
+                                    <span>$15-$18/hr</span>
+                                </div>
+                            </div>
+                            <p class="job-description">
+                                Help support Goodwill's mission through retail operations. Flexible scheduling and community impact.
+                            </p>
+                            <a href="https://go4affm.com/c/?p=26712&o=9189" class="apply-btn">Apply Now</a>
+                        </div>
+                        <div class="job-card-footer">
+                            <span class="job-type">Part-time</span>
+                            <span class="posted-time">Posted 7h ago</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Johnson & Johnson Jobs -->
+                    <div class="job-card">
+                        <div class="job-card-header">
+                            <div class="company-logo">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/9/9e/Johnson_%26_Johnson_Logo.svg" alt="Johnson & Johnson">
+                            </div>
+                            <div>
+                                <h3 class="job-title">Quality Control</h3>
+                                <p class="company-name">Johnson & Johnson</p>
+                            </div>
+                        </div>
+                        <div class="job-card-body">
+                            <div class="job-meta">
+                                <div class="meta-item">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span>Multiple Locations</span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-dollar-sign"></i>
+                                    <span>$20-$28/hr</span>
+                                </div>
+                            </div>
+                            <p class="job-description">
+                                Ensure product quality and safety standards in manufacturing facilities. Training provided.
+                            </p>
+                            <a href="https://go4affm.com/c/?p=26712&o=9188" class="apply-btn">Apply Now</a>
+                        </div>
+                        <div class="job-card-footer">
+                            <span class="job-type">Full-time</span>
+                            <span class="posted-time">Posted 2d ago</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Pepsi Jobs -->
+                    <div class="job-card">
+                        <div class="job-card-header">
+                            <div class="company-logo">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/0/0e/Pepsi_logo_2014.svg" alt="Pepsi">
+                            </div>
+                            <div>
+                                <h3 class="job-title">Delivery Driver</h3>
+                                <p class="company-name">PepsiCo</p>
+                            </div>
+                            <div class="urgent-tag">HIRING NOW</div>
+                        </div>
+                        <div class="job-card-body">
+                            <div class="job-meta">
+                                <div class="meta-item">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span>Nationwide</span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-dollar-sign"></i>
+                                    <span>$18-$25/hr</span>
+                                </div>
+                            </div>
+                            <p class="job-description">
+                                Deliver Pepsi products to stores and restaurants. CDL not required for most routes.
+                            </p>
+                            <a href="https://go4affm.com/c/?p=26712&o=9184" class="apply-btn">Apply Now</a>
+                        </div>
+                        <div class="job-card-footer">
+                            <span class="job-type">Full-time</span>
+                            <span class="posted-time">Posted 3h ago</span>
+                        </div>
+                    </div>
                 </div>
                 
                 <div class="carousel-nav">
@@ -830,36 +1137,36 @@
     <script>
         // Job data for the live feed
         const jobMatches = [
-            {name: "Michael R.", location: "Ohio", company: "Amazon", position: "Delivery Driver", time: "2 minutes ago", logo: "amazon", action: "just got hired as"},
-            {name: "Jennifer K.", location: "Florida", company: "Apple", position: "Remote Support", time: "5 minutes ago", logo: "apple", action: "started new position at"},
-            {name: "David S.", location: "California", company: "Tesla", position: "Production Associate", time: "8 minutes ago", logo: "tesla", action: "accepted offer from"},
-            {name: "Lisa M.", location: "New York", company: "Marvel", position: "Content Editor", time: "12 minutes ago", logo: "marvel", action: "landed a job at"},
-            {name: "Robert T.", location: "Texas", company: "Netflix", position: "Content Moderator", time: "15 minutes ago", logo: "netflix", action: "joined the team at"},
-            {name: "Sarah J.", location: "Illinois", company: "Disney", position: "Customer Service", time: "18 minutes ago", logo: "disney", action: "was selected for"},
-            {name: "James P.", location: "Georgia", company: "Microsoft", position: "Technical Support", time: "22 minutes ago", logo: "microsoft", action: "got the position at"},
-            {name: "Emily W.", location: "Washington", company: "YouTube", position: "Video Editor", time: "25 minutes ago", logo: "youtube", action: "signed contract with"},
-            {name: "Daniel H.", location: "Colorado", company: "Walmart", position: "Store Associate", time: "28 minutes ago", logo: "walmart", action: "began working at"},
-            {name: "Olivia M.", location: "Arizona", company: "Apple", position: "Customer Support", time: "32 minutes ago", logo: "apple", action: "was recruited by"},
-            {name: "William B.", location: "Michigan", company: "Amazon", position: "Warehouse Worker", time: "35 minutes ago", logo: "amazon", action: "started today at"},
-            {name: "Sophia L.", location: "Pennsylvania", company: "Netflix", position: "Content Reviewer", time: "40 minutes ago", logo: "netflix", action: "was chosen for"},
-            {name: "Ethan C.", location: "Virginia", company: "Tesla", position: "Assembly Technician", time: "45 minutes ago", logo: "tesla", action: "got placed at"},
-            {name: "Ava S.", location: "North Carolina", company: "Marvel", position: "Graphic Designer", time: "50 minutes ago", logo: "marvel", action: "was hired by"},
-            {name: "Noah W.", location: "Massachusetts", company: "Disney", position: "Help Desk Agent", time: "55 minutes ago", logo: "disney", action: "started new role at"},
-            {name: "Isabella G.", location: "Indiana", company: "Microsoft", position: "Support Specialist", time: "1 hour ago", logo: "microsoft", action: "accepted position at"},
-            {name: "Liam F.", location: "Tennessee", company: "YouTube", position: "Video Producer", time: "1 hour ago", logo: "youtube", action: "was selected by"},
-            {name: "Mia D.", location: "Missouri", company: "Walmart", position: "Cashier", time: "1 hour ago", logo: "walmart", action: "began employment at"},
-            {name: "Benjamin P.", location: "Maryland", company: "Apple", position: "Tech Support", time: "1 hour ago", logo: "apple", action: "got the job at"},
-            {name: "Charlotte H.", location: "Wisconsin", company: "Amazon", position: "Delivery Driver", time: "1 hour ago", logo: "amazon", action: "joined"},
-            {name: "Lucas M.", location: "Minnesota", company: "Netflix", position: "Content Analyst", time: "1 hour ago", logo: "netflix", action: "was picked for"},
-            {name: "Amelia B.", location: "Oregon", company: "Tesla", position: "Production Worker", time: "1 hour ago", logo: "tesla", action: "started career at"},
-            {name: "Mason C.", location: "Louisiana", company: "Marvel", position: "Editorial Assistant", time: "1 hour ago", logo: "marvel", action: "was brought on by"},
-            {name: "Harper L.", location: "Alabama", company: "Disney", position: "Customer Care", time: "1 hour ago", logo: "disney", action: "got placed with"},
-            {name: "Elijah S.", location: "Kentucky", company: "Microsoft", position: "Help Desk", time: "1 hour ago", logo: "microsoft", action: "was recruited for"},
-            {name: "Abigail W.", location: "Oklahoma", company: "YouTube", position: "Video Assistant", time: "1 hour ago", logo: "youtube", action: "joined the staff at"},
-            {name: "Alexander G.", location: "Iowa", company: "Walmart", position: "Stock Associate", time: "1 hour ago", logo: "walmart", action: "started work at"},
-            {name: "Emily T.", location: "Utah", company: "Apple", position: "Support Agent", time: "1 hour ago", logo: "apple", action: "was chosen by"},
-            {name: "Jacob M.", location: "Nevada", company: "Amazon", position: "Fulfillment", time: "1 hour ago", logo: "amazon", action: "began new job at"},
-            {name: "Ella R.", location: "New Mexico", company: "Netflix", position: "Content Specialist", time: "1 hour ago", logo: "netflix", action: "was hired at"}
+            {name: "Michael R.", location: "Ohio", company: "Amazon", position: "Delivery Driver", time: "2 minutes ago", logo: "amazon", action: "just got hired as", gender: "male"},
+            {name: "Jennifer K.", location: "Florida", company: "Apple", position: "Remote Support", time: "5 minutes ago", logo: "apple", action: "started new position at", gender: "female"},
+            {name: "David S.", location: "California", company: "Tesla", position: "Production Associate", time: "8 minutes ago", logo: "tesla", action: "accepted offer from", gender: "male"},
+            {name: "Lisa M.", location: "New York", company: "Marvel", position: "Content Editor", time: "12 minutes ago", logo: "marvel", action: "landed a job at", gender: "female"},
+            {name: "Robert T.", location: "Texas", company: "Netflix", position: "Content Moderator", time: "15 minutes ago", logo: "netflix", action: "joined the team at", gender: "male"},
+            {name: "Sarah J.", location: "Illinois", company: "Disney", position: "Customer Service", time: "18 minutes ago", logo: "disney", action: "was selected for", gender: "female"},
+            {name: "James P.", location: "Georgia", company: "Microsoft", position: "Technical Support", time: "22 minutes ago", logo: "microsoft", action: "got the position at", gender: "male"},
+            {name: "Emily W.", location: "Washington", company: "YouTube", position: "Video Editor", time: "25 minutes ago", logo: "youtube", action: "signed contract with", gender: "female"},
+            {name: "Daniel H.", location: "Colorado", company: "Walmart", position: "Store Associate", time: "28 minutes ago", logo: "walmart", action: "began working at", gender: "male"},
+            {name: "Olivia M.", location: "Arizona", company: "Apple", position: "Customer Support", time: "32 minutes ago", logo: "apple", action: "was recruited by", gender: "female"},
+            {name: "William B.", location: "Michigan", company: "Amazon", position: "Warehouse Worker", time: "35 minutes ago", logo: "amazon", action: "started today at", gender: "male"},
+            {name: "Sophia L.", location: "Pennsylvania", company: "Netflix", position: "Content Reviewer", time: "40 minutes ago", logo: "netflix", action: "was chosen for", gender: "female"},
+            {name: "Ethan C.", location: "Virginia", company: "Tesla", position: "Assembly Technician", time: "45 minutes ago", logo: "tesla", action: "got placed at", gender: "male"},
+            {name: "Ava S.", location: "North Carolina", company: "Marvel", position: "Graphic Designer", time: "50 minutes ago", logo: "marvel", action: "was hired by", gender: "female"},
+            {name: "Noah W.", location: "Massachusetts", company: "Disney", position: "Help Desk Agent", time: "55 minutes ago", logo: "disney", action: "started new role at", gender: "male"},
+            {name: "Isabella G.", location: "Indiana", company: "Microsoft", position: "Support Specialist", time: "1 hour ago", logo: "microsoft", action: "accepted position at", gender: "female"},
+            {name: "Liam F.", location: "Tennessee", company: "YouTube", position: "Video Producer", time: "1 hour ago", logo: "youtube", action: "was selected by", gender: "male"},
+            {name: "Mia D.", location: "Missouri", company: "Walmart", position: "Cashier", time: "1 hour ago", logo: "walmart", action: "began employment at", gender: "female"},
+            {name: "Benjamin P.", location: "Maryland", company: "Apple", position: "Tech Support", time: "1 hour ago", logo: "apple", action: "got the job at", gender: "male"},
+            {name: "Charlotte H.", location: "Wisconsin", company: "Amazon", position: "Delivery Driver", time: "1 hour ago", logo: "amazon", action: "joined", gender: "female"},
+            {name: "Lucas M.", location: "Minnesota", company: "Netflix", position: "Content Analyst", time: "1 hour ago", logo: "netflix", action: "was picked for", gender: "male"},
+            {name: "Amelia B.", location: "Oregon", company: "Tesla", position: "Production Worker", time: "1 hour ago", logo: "tesla", action: "started career at", gender: "female"},
+            {name: "Mason C.", location: "Louisiana", company: "Marvel", position: "Editorial Assistant", time: "1 hour ago", logo: "marvel", action: "was brought on by", gender: "male"},
+            {name: "Harper L.", location: "Alabama", company: "Disney", position: "Customer Care", time: "1 hour ago", logo: "disney", action: "got placed with", gender: "female"},
+            {name: "Elijah S.", location: "Kentucky", company: "Microsoft", position: "Help Desk", time: "1 hour ago", logo: "microsoft", action: "was recruited for", gender: "male"},
+            {name: "Abigail W.", location: "Oklahoma", company: "YouTube", position: "Video Assistant", time: "1 hour ago", logo: "youtube", action: "joined the staff at", gender: "female"},
+            {name: "Alexander G.", location: "Iowa", company: "Walmart", position: "Stock Associate", time: "1 hour ago", logo: "walmart", action: "started work at", gender: "male"},
+            {name: "Emily T.", location: "Utah", company: "Apple", position: "Support Agent", time: "1 hour ago", logo: "apple", action: "was chosen by", gender: "female"},
+            {name: "Jacob M.", location: "Nevada", company: "Amazon", position: "Fulfillment", time: "1 hour ago", logo: "amazon", action: "began new job at", gender: "male"},
+            {name: "Ella R.", location: "New Mexico", company: "Netflix", position: "Content Specialist", time: "1 hour ago", logo: "netflix", action: "was hired at", gender: "female"}
         ];
 
         // Company logo mapping
@@ -872,23 +1179,24 @@
             amazon: "https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg",
             walmart: "https://upload.wikimedia.org/wikipedia/commons/1/14/Walmart_Spark.svg",
             disney: "https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg",
-            microsoft: "https://upload.wikimedia.org/wikipedia/commons/9/96/Microsoft_logo_%282012%29.svg"
+            microsoft: "https://upload.wikimedia.org/wikipedia/commons/9/96/Microsoft_logo_%282012%29.svg",
+            cleaning: "https://cdn-icons-png.flaticon.com/512/3039/3039008.png",
+            food: "https://cdn-icons-png.flaticon.com/512/3081/3081559.png",
+            product: "https://cdn-icons-png.flaticon.com/512/3246/3246749.png",
+            creator: "https://cdn-icons-png.flaticon.com/512/2936/2936886.png",
+            smartphone: "https://cdn-icons-png.flaticon.com/512/2541/2541979.png",
+            aldi: "https://upload.wikimedia.org/wikipedia/commons/3/3a/Aldi_Nord_201x_logo.svg",
+            goodwill: "https://upload.wikimedia.org/wikipedia/commons/9/9e/Goodwill_Industries_Logo.svg",
+            jnj: "https://upload.wikimedia.org/wikipedia/commons/9/9e/Johnson_%26_Johnson_Logo.svg",
+            pepsi: "https://upload.wikimedia.org/wikipedia/commons/0/0e/Pepsi_logo_2014.svg"
         };
-
-        // Action verbs for variety
-        const actionVerbs = [
-            "got hired at", "started at", "joined", "was selected for", 
-            "landed a job at", "began working at", "was recruited by",
-            "got placed at", "was chosen for", "accepted offer from"
-        ];
 
         // Initialize live feed with profile pictures
         function initializeLiveFeed() {
             const feedContainer = document.getElementById('live-feed');
             
             jobMatches.forEach((match, index) => {
-                const isMale = index % 2 === 0; // Alternate between male and female
-                const photoUrl = isMale ? 
+                const photoUrl = match.gender === "male" ? 
                     `https://xsgames.co/randomusers/avatar.php?g=male&${index}` : 
                     `https://xsgames.co/randomusers/avatar.php?g=female&${index}`;
                 
@@ -923,7 +1231,7 @@
             }, 100);
         }
 
-        // Carousel functionality with independent row sliding
+        // Carousel functionality with proper sliding
         function initializeCarousel() {
             const rows = [
                 document.getElementById('row1'),
@@ -931,17 +1239,21 @@
                 document.getElementById('row3')
             ];
             const dots = document.querySelectorAll('.carousel-dot');
-            const cardsPerRow = 9; // Total cards available per row (3 visible at a time)
             let currentIndex = 0;
+            const cardWidth = document.querySelector('.job-card').offsetWidth + 25; // card + gap
             
             function goToSlide(index) {
                 currentIndex = index;
-                const offset = -currentIndex * 100;
+                const offset = -currentIndex * (cardWidth * 3); // Move by 3 cards
                 
-                // Slide each row independently with different offsets
+                // Apply transform to each row with different delays for staggered effect
                 rows[0].style.transform = `translateX(${offset}px)`;
-                rows[1].style.transform = `translateX(${offset + 50}px)`;
-                rows[2].style.transform = `translateX(${offset + 100}px)`;
+                setTimeout(() => {
+                    rows[1].style.transform = `translateX(${offset + 50}px)`;
+                }, 100);
+                setTimeout(() => {
+                    rows[2].style.transform = `translateX(${offset + 100}px)`;
+                }, 200);
                 
                 // Update dots
                 dots.forEach((dot, i) => {
@@ -961,6 +1273,9 @@
                 currentIndex = (currentIndex + 1) % 3; // We have 3 slides
                 goToSlide(currentIndex);
             }, 5000);
+            
+            // Initialize first slide
+            goToSlide(0);
         }
 
         // Live jobs counter animation
